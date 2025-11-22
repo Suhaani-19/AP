@@ -10,13 +10,27 @@
       height: 100vh;
       overflow: hidden;
       background: radial-gradient(ellipse at top left, #ffe3d5 0%, #ffcffc 40%, #b2f7ff 100%);
+      border: 4px solid #ffffff70;          /* NEW: soft border */
+      box-shadow: 0 0 40px #ffffff80 inset; /* NEW: soft glowing frame */
     }
+
+    /* OVERLAY FOR DEPTH */
+    .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      background: radial-gradient(circle at center, #ffffff15 0%, #ffffff00 70%);
+      z-index: 40;
+    }
+
     .sky {
       position: absolute;
       width: 100vw; height: 60vh; top: 0; left: 0;
       background: linear-gradient(to bottom, #ffe3d5 0%, #fffbcb 65%, #a8e0f4 100%);
       z-index: 1;
     }
+
     .sun {
       position: absolute; left: 68vw; top: 7vh;
       width: 130px; height: 130px;
@@ -77,7 +91,7 @@
       100% { background-position: 120px 0; }
     }
 
-    /* ADDITION 1: Simple wave line */
+    /* Simple wave line */
     .wave-line {
       position: absolute;
       bottom: 13.2vh;
@@ -87,7 +101,7 @@
       opacity: 0.6;
     }
 
-    /* ADDITION 2: Simple stars */
+    /* Stars */
     .star {
       position: absolute;
       width: 6px;
@@ -99,7 +113,7 @@
     .star1 { top: 8vh; left: 25vw; }
     .star2 { top: 14vh; left: 55vw; }
 
-    /* ADDITION 3: Simple bird */
+    /* Flying bird */
     .bird {
       position: absolute;
       top: 20vh;
@@ -112,7 +126,7 @@
       to { left: 110vw; }
     }
 
-    /* ADDITION 4: Glowing dot */
+    /* Glowing dot */
     .glow {
       position: absolute;
       width: 20px;
@@ -124,7 +138,42 @@
       box-shadow: 0 0 18px #ff75d8;
     }
 
-    /* ADDITION 5: Caption hover */
+    /* NEW: Floating butterflies */
+    .butterfly {
+      position: absolute;
+      font-size: 26px;
+      animation: floatUp 9s linear infinite;
+      opacity: 0.8;
+    }
+    .b1 { left: 12vw; bottom: 10vh; animation-duration: 10s; }
+    .b2 { left: 70vw; bottom: 8vh; animation-duration: 13s; }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+      100% { transform: translateY(-30vh) rotate(20deg); opacity: 0; }
+    }
+
+    /* NEW: Floating sparkles from water */
+    .sparkle {
+      position: absolute;
+      bottom: 10vh;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.7;
+      animation: rise 5s linear infinite;
+    }
+    .s1 { left: 20vw; animation-delay: 0s; }
+    .s2 { left: 50vw; animation-delay: 2s; }
+    .s3 { left: 80vw; animation-delay: 1s; }
+
+    @keyframes rise {
+      0% { transform: translateY(0); opacity: 0.7; }
+      100% { transform: translateY(-15vh); opacity: 0; }
+    }
+
+    /* Caption hover */
     .caption {
       position: absolute;
       width: 100%;
@@ -166,9 +215,20 @@
 
   <div class="glow"></div>
 
+  <!-- NEW BUTTERFLIES -->
+  <div class="butterfly b1">🦋</div>
+  <div class="butterfly b2">🦋</div>
+
+  <!-- NEW SPARKLES -->
+  <div class="sparkle s1"></div>
+  <div class="sparkle s2"></div>
+  <div class="sparkle s3"></div>
+
   <div class="water"></div>
   <div class="wave-line"></div>
 
   <div class="caption">A World of Color Awaits 🌈</div>
+
+  <div class="overlay"></div>
 </body>
 </html>

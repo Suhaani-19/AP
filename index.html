@@ -25,6 +25,8 @@
       box-shadow: 0 0 120px 60px #fffde466;
       z-index: 2;
     }
+
+    /* CLOUDS */
     .cloud {
       position: absolute; top: 11vh; left: 16vw; z-index: 3;
       width: 130px; height: 60px;
@@ -37,6 +39,8 @@
     .cloud:nth-child(2) { left: 36vw; top: 17vh; width: 90px; animation-duration: 14s; }
     .cloud:nth-child(3) { left: 70vw; top: 13vh; width: 125px; animation-duration: 21s; }
     @keyframes cloudmove { 100% { left: 62vw; } }
+
+    /* HILLS */
     .hill {
       position: absolute; left: 0; width: 100vw;
       z-index: 5;
@@ -59,20 +63,68 @@
       clip-path: ellipse(59vw 10vh at 48vw 100%);
       opacity: 0.82;
     }
+
+    /* WATER */
     .water {
       position: absolute; bottom: 0; left: 0; width: 100vw; height: 14vh; z-index: 10;
       background: linear-gradient(to top, #62c9ff 83%, #fee3ec 100%);
-      background-size: 90vw 30px, 100vw 100%;
-      background-repeat: repeat-x;
       animation: shimmer 8s linear infinite alternate;
       border-top-left-radius: 21vw 80px;
       border-top-right-radius: 15vw 50px;
-      box-shadow: 0 -4px 22px #bee3fa70;
     }
     @keyframes shimmer {
-      0% { background-position: 0 0, 0 0; }
-      100% { background-position: 120px 0, 0 0; }
+      0% { background-position: 0 0; }
+      100% { background-position: 120px 0; }
     }
+
+    /* ADDITION 1: Simple wave line */
+    .wave-line {
+      position: absolute;
+      bottom: 13.2vh;
+      width: 100vw;
+      height: 3px;
+      background: white;
+      opacity: 0.6;
+    }
+
+    /* ADDITION 2: Simple stars */
+    .star {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+    }
+    .star1 { top: 8vh; left: 25vw; }
+    .star2 { top: 14vh; left: 55vw; }
+
+    /* ADDITION 3: Simple bird */
+    .bird {
+      position: absolute;
+      top: 20vh;
+      left: -10vw;
+      font-size: 28px;
+      animation: fly 12s linear infinite;
+    }
+    @keyframes fly {
+      from { left: -10vw; }
+      to { left: 110vw; }
+    }
+
+    /* ADDITION 4: Glowing dot */
+    .glow {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      bottom: 30vh;
+      left: 30vw;
+      background: #ff75d8;
+      border-radius: 50%;
+      box-shadow: 0 0 18px #ff75d8;
+    }
+
+    /* ADDITION 5: Caption hover */
     .caption {
       position: absolute;
       width: 100%;
@@ -82,23 +134,41 @@
       font-size: 2.1rem;
       font-weight: bold;
       letter-spacing: .2rem;
-      text-shadow: 0 2px 32px #fffbcb88,0 0px 8px #ff3b7055;
+      text-shadow: 0 2px 32px #fffbcb88;
       z-index: 30;
       font-family: 'Segoe UI', 'Poppins', sans-serif;
+      transition: transform .3s ease;
+    }
+    .caption:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
+
 <body>
   <h1>Trial codes</h1>
+
   <div class="sky"></div>
   <div class="sun"></div>
+
   <div class="cloud"></div>
   <div class="cloud"></div>
   <div class="cloud"></div>
+
   <div class="hill hill1"></div>
   <div class="hill hill2"></div>
   <div class="hill hill3"></div>
+
+  <div class="star star1"></div>
+  <div class="star star2"></div>
+
+  <div class="bird">🕊️</div>
+
+  <div class="glow"></div>
+
   <div class="water"></div>
+  <div class="wave-line"></div>
+
   <div class="caption">A World of Color Awaits 🌈</div>
 </body>
 </html>

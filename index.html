@@ -4,7 +4,8 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vivid Colorful Scenery</title>
-  <style >
+
+  <style>
     body {
       margin: 0;
       height: 100vh;
@@ -12,91 +13,148 @@
       background: radial-gradient(ellipse at top left, #ffe3d5 0%, #ffcffc 40%, #b2f7ff 100%);
       border: 4px solid #ffffff70;
       box-shadow: 0 0 40px #ffffff80 inset;
-      
-      animation: fadeIn 1.8s ease-in;  /* ⭐ NEW LINE 1: Soft fade-in */
+      animation: fadeIn 1.8s ease-in;
     }
-    .caption:hover { text-shadow: 0 0 12px #ffd6f9aa; }
-    
+
     body:hover {
-    cursor: crosshair;
-    opacity: 0.995;
-  }
+      cursor: crosshair;
+      opacity: 0.995;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
 
+    /* Accessibility polish */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
     .overlay {
       position: absolute;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
+      inset: 0;
       pointer-events: none;
       background: radial-gradient(circle at center, #ffffff15 0%, #ffffff00 70%);
       z-index: 40;
     }
 
+    /* Header title (small fix) */
+    h1 {
+      position: absolute;
+      top: 14px;
+      left: 18px;
+      margin: 0;
+      font-size: 1.2rem;
+      color: #ffffffcc;
+      font-family: 'Segoe UI', sans-serif;
+      z-index: 50;
+      letter-spacing: 0.08rem;
+      text-shadow: 0 0 10px #ffffff88;
+    }
+
     .sky {
       position: absolute;
-      width: 100vw; height: 60vh; top: 0; left: 0;
+      width: 100vw;
+      height: 60vh;
+      top: 0;
       background: linear-gradient(to bottom, #ffe3d5 0%, #fffbcb 65%, #a8e0f4 100%);
       z-index: 1;
     }
 
     .sun {
-      position: absolute; left: 68vw; top: 7vh;
-      width: 130px; height: 130px;
-      background: radial-gradient(circle, #fffde4 50%, #ffd452 100%, #ffd45200 98%);
+      position: absolute;
+      left: 68vw;
+      top: 7vh;
+      width: 130px;
+      height: 130px;
+      background: radial-gradient(circle, #fffde4 50%, #ffd452 100%);
       border-radius: 50%;
       box-shadow: 0 0 120px 60px #fffde466;
       z-index: 2;
+      will-change: transform;
     }
 
     .cloud {
-      position: absolute; top: 11vh; left: 16vw; z-index: 3;
-      width: 130px; height: 60px;
+      position: absolute;
+      top: 11vh;
+      left: 16vw;
+      z-index: 3;
+      width: 130px;
+      height: 60px;
       background: #fff8fa;
       border-radius: 80px;
       filter: blur(1.5px);
-      opacity: .75;
+      opacity: 0.75;
       animation: cloudmove 19s linear infinite alternate;
+      will-change: left;
     }
-    .cloud:nth-child(2) { left: 36vw; top: 17vh; width: 90px; animation-duration: 14s; }
-    .cloud:nth-child(3) { left: 70vw; top: 13vh; width: 125px; animation-duration: 21s; }
-    @keyframes cloudmove { 100% { left: 62vw; } }
+
+    .cloud:nth-child(2) {
+      left: 36vw;
+      top: 17vh;
+      width: 90px;
+      animation-duration: 14s;
+    }
+
+    .cloud:nth-child(3) {
+      left: 70vw;
+      top: 13vh;
+      width: 125px;
+      animation-duration: 21s;
+    }
+
+    @keyframes cloudmove {
+      100% { left: 62vw; }
+    }
 
     .hill {
-      position: absolute; left: 0; width: 100vw;
+      position: absolute;
+      left: 0;
+      width: 100vw;
       z-index: 5;
     }
+
     .hill1 {
-      bottom: 27vh; height: 28vh;
+      bottom: 27vh;
+      height: 28vh;
       background: linear-gradient(130deg, #ffe683 0%, #ffa4b6 80%);
       clip-path: ellipse(70vw 20vh at 50vw 100%);
       opacity: 0.92;
     }
+
     .hill2 {
-      bottom: 20vh; height: 26vh;
+      bottom: 20vh;
+      height: 26vh;
       background: linear-gradient(90deg, #54e6c1 10%, #978efb 80%);
       clip-path: ellipse(63vw 16vh at 40vw 100%);
-      opacity: 0.80;
+      opacity: 0.8;
     }
+
     .hill3 {
-      bottom: 12vh; height: 19vh;
+      bottom: 12vh;
+      height: 19vh;
       background: linear-gradient(144deg, #f7b343 15%, #72dffd 100%);
       clip-path: ellipse(59vw 10vh at 48vw 100%);
       opacity: 0.82;
     }
 
     .water {
-      position: absolute; bottom: 0; left: 0; width: 100vw; height: 14vh; z-index: 10;
+      position: absolute;
+      bottom: 0;
+      width: 100vw;
+      height: 14vh;
       background: linear-gradient(to top, #62c9ff 83%, #fee3ec 100%);
       animation: shimmer 8s linear infinite alternate;
       border-top-left-radius: 21vw 80px;
       border-top-right-radius: 15vw 50px;
+      z-index: 10;
     }
+
     @keyframes shimmer {
-      0% { background-position: 0 0; }
       100% { background-position: 120px 0; }
     }
 
@@ -109,17 +167,6 @@
       opacity: 0.6;
     }
 
-    .star {
-      position: absolute;
-      width: 6px;
-      height: 6px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.8;
-    }
-    .star1 { top: 8vh; left: 25vw; }
-    .star2 { top: 14vh; left: 55vw; }
-
     .bird {
       position: absolute;
       top: 20vh;
@@ -127,71 +174,29 @@
       font-size: 28px;
       animation: fly 12s linear infinite;
     }
+
     @keyframes fly {
-      from { left: -10vw; }
       to { left: 110vw; }
-    }
-
-    .glow {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      bottom: 30vh;
-      left: 30vw;
-      background: #ff75d8;
-      border-radius: 50%;
-      box-shadow: 0 0 18px #ff75d8;
-    }
-
-    .butterfly {
-      position: absolute;
-      font-size: 26px;
-      animation: floatUp 9s linear infinite;
-      opacity: 0.8;
-    }
-    .b1 { left: 12vw; bottom: 10vh; animation-duration: 10s; }
-    .b2 { left: 70vw; bottom: 8vh; animation-duration: 13s; }
-
-    @keyframes floatUp {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
-      100% { transform: translateY(-30vh) rotate(20deg); opacity: 0; }
-    }
-
-    .sparkle {
-      position: absolute;
-      bottom: 10vh;
-      width: 6px;
-      height: 6px;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.7;
-      animation: rise 5s linear infinite;
-    }
-    .s1 { left: 20vw; animation-delay: 0s; }
-    .s2 { left: 50vw; animation-delay: 2s; }
-    .s3 { left: 80vw; animation-delay: 1s; }
-
-    @keyframes rise {
-      0% { transform: translateY(0); opacity: 0.7; }
-      100% { transform: translateY(-15vh); opacity: 0; }
     }
 
     .caption {
       position: absolute;
       width: 100%;
-      text-align: center;
       bottom: 4vh;
+      text-align: center;
       color: #e64e5b;
       font-size: 2.1rem;
       font-weight: bold;
-      letter-spacing: .2rem;
+      letter-spacing: 0.2rem;
       text-shadow: 0 2px 32px #fffbcb88;
       z-index: 30;
       font-family: 'Segoe UI', 'Poppins', sans-serif;
-      transition: transform .3s ease;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
     }
+
     .caption:hover {
       transform: scale(1.05);
+      text-shadow: 0 0 12px #ffd6f9aa;
     }
   </style>
 </head>
@@ -199,10 +204,10 @@
 <body>
   <h1>Trial codes</h1>
 
- <script>
-   console.log("Scenery loaded! Enjoy the vibes, Suhaani 🌈✨"); /* ⭐ NEW LINE 2 */ 
-   console.log("Tiny extra line added successfully!"); 
- </script>
+  <script>
+    console.log("Scenery loaded! Enjoy the vibes, Suhaani 🌈✨");
+    console.log("Tiny extra line added successfully!");
+  </script>
 
   <div class="sky"></div>
   <div class="sun"></div>
@@ -215,25 +220,12 @@
   <div class="hill hill2"></div>
   <div class="hill hill3"></div>
 
-  <div class="star star1"></div>
-  <div class="star star2"></div>
-
   <div class="bird">🕊️</div>
-
-  <div class="glow"></div>
-
-  <div class="butterfly b1">🦋</div>
-  <div class="butterfly b2">🦋</div>
-
-  <div class="sparkle s1"></div>
-  <div class="sparkle s2"></div>
-  <div class="sparkle s3"></div>
 
   <div class="water"></div>
   <div class="wave-line"></div>
 
   <div class="caption">A World of Color Awaits 🌈</div>
-
   <div class="overlay"></div>
 </body>
 </html>

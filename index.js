@@ -1,30 +1,38 @@
-const http = require("http")
-const fs = require("fs")
-const { error } = require("console")
+const http = require("http");
+const fs = require("fs");
 
 // Create Server
-const server = http.createServer((req,res)=>{
-    console.log(req.url)
-    if(req.url=='/photo'){
-        res.writeHead(200,{"me":"Suhaani"})
-        fs.readFile("images.jpeg",(error,data)=>{
-        res.end(data)
-    })
-    }else if(req.url==="/website"){
-        fs.readFile("index.html",(error,data)=>
-            {res.end(data)
+const server = http.createServer((req, res) => {
+    console.log(req.url);
 
-            })
-        
-    }
-    else{
-        res.end("Page not found")
-    }
-    
+    if (req.url === "/photo") {
+        fs.readFile("images.jpeg", (error, data) => {
+            if (error) {
+                res.writeHead(500, { "Content-Type": "text/plain" });
+                return res.end("Error loading image");
+            }
+            res.writeHead(200, { "Content-Type": "image/jpeg" });
+            res.end(data);
+        });
 
-})
-server.listen(3000,()=>{
-    console.log("My server is ruuning on http://localhost:3000/ port")
-})
+    } else if (req.url === "/website") {
+        fs.readFile("index.html", (error, data) => {
+            if (error) {
+                res.writeHead(500, { "Content-Type": "text/plain" });
+                return res.end("Error loading website");
+            }
+            res.writeHead(200, { "Content-Type": "text/html" });
+            res.end(data);
+        });
+
+    } else {
+        res.writeHead(404, { "Content-Type": "text/plain" });
+        res.end("Page not found");
+    }
+});
+
+server.listen(3000, () => {
+    console.log("My server is running on http://localhost:3000/ port");
+});
 
 //  npx kill-port 3000 after every new edition!

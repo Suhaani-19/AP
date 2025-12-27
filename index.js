@@ -31,8 +31,7 @@ const server = http.createServer((req, res) => {
     }
 });
 
+// Start Server
 server.listen(3000, () => {
-    console.log("My server is running on http://localhost:3000/ port");
+    console.log("My server is running at http://localhost:3000/");
 });
-
-//  npx kill-port 3000 after every new edition!

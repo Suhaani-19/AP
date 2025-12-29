@@ -189,6 +189,26 @@
       transform: scale(1.05);
       text-shadow: 0 0 12px #ffd6f9aa;
     }
+
+    /* Ripple effect */
+    .ripple {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.8);
+      transform: translate(-50%, -50%);
+      animation: rippleExpand 1.1s ease forwards;
+      pointer-events: none;
+    }
+    @keyframes rippleExpand {
+      to {
+        width: 90px;
+        height: 90px;
+        opacity: 0;
+      }
+    }
+
   </style>
 </head>
 
@@ -202,7 +222,10 @@
     const sceneVersion = "1.0.2";
     console.log("Scene version:", sceneVersion);
 
-    console.log("One more new line added!"); // ⭐ new line added ⭐
+    console.log("One more new line added!"); // ⭐
+
+    // ⭐ NEW LINE ADDED ⭐
+    document.body.addEventListener("click", e => { let r=document.createElement("div");r.className="ripple";r.style.left=e.clientX+"px";r.style.top=e.clientY+"px";document.body.appendChild(r);setTimeout(()=>r.remove(),1100); });
   </script>
 
   <div class="sky"></div>

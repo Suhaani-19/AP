@@ -3,6 +3,7 @@ const fs = require("fs");
 
 // Create Server
 const server = http.createServer((req, res) => {
+    console.log("A new request received!"); // ⭐ New line added ⭐
     console.log(req.url);
 
     if (req.url === "/photo") {

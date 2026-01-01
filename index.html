@@ -190,7 +190,6 @@
       text-shadow: 0 0 12px #ffd6f9aa;
     }
 
-    /* Ripple effect */
     .ripple {
       position: absolute;
       width: 12px;
@@ -218,14 +217,20 @@
   <script>
     console.log("Scenery loaded! Enjoy the vibes 🌈✨");
     console.log("Tiny extra line added successfully!");
-
     const sceneVersion = "1.0.2";
     console.log("Scene version:", sceneVersion);
-
     console.log("One more new line added!"); // ⭐
 
+    console.log("✨ New line added as requested!"); // ✨ Added new line!
 
-    document.body.addEventListener("click", e => { let r=document.createElement("div");r.className="ripple";r.style.left=e.clientX+"px";r.style.top=e.clientY+"px";document.body.appendChild(r);setTimeout(()=>r.remove(),1100); });
+    document.body.addEventListener("click", e => { 
+      let r=document.createElement("div");
+      r.className="ripple";
+      r.style.left=e.clientX+"px";
+      r.style.top=e.clientY+"px";
+      document.body.appendChild(r);
+      setTimeout(()=>r.remove(),1100); 
+    });
   </script>
 
   <div class="sky"></div>

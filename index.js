@@ -3,8 +3,11 @@ const fs = require("fs");
 
 // Create Server
 const server = http.createServer((req, res) => {
-    console.log("A new request received!"); // ⭐ New line added ⭐
+    console.log("A new request received!");
     console.log(req.url);
+
+    // ⭐ Proper added line (CORS support) ⭐
+    res.setHeader("Access-Control-Allow-Origin", "*");
 
     if (req.url === "/photo") {
         fs.readFile("images.jpeg", (error, data) => {

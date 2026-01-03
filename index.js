@@ -6,7 +6,10 @@ const server = http.createServer((req, res) => {
     console.log("A new request received!");
     console.log(req.url);
 
-    // ⭐ Proper added line (CORS support) ⭐
+    // ⭐ Added line (custom response header) ⭐
+    res.setHeader("X-Powered-By", "Node.js");
+
+    // CORS support
     res.setHeader("Access-Control-Allow-Origin", "*");
 
     if (req.url === "/photo") {

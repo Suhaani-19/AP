@@ -205,7 +205,11 @@
     console.log("Scene version:", sceneVersion);
 
     // ⭐ ONE newly added proper line ⭐
-    document.addEventListener("visibilitychange", () => console.log("Tab visibility:", document.visibilityState));
+    document.addEventListener("keydown", e => console.log("Key pressed:", e.key));
+
+    document.addEventListener("visibilitychange", () => 
+      console.log("Tab visibility:", document.visibilityState)
+    );
 
     document.body.addEventListener("click", e => {
       let r = document.createElement("div");

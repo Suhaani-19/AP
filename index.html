@@ -204,8 +204,11 @@
     const sceneVersion = "1.0.2";
     console.log("Scene version:", sceneVersion);
 
-    // ⭐ ONE newly added proper line ⭐
+    // ⭐ Existing added line ⭐
     document.addEventListener("keydown", e => console.log("Key pressed:", e.key));
+
+    // ⭐⭐ NEWLY ADDED SINGLE LINE ⭐⭐
+    window.addEventListener("resize", () => console.log("Window resized"));
 
     document.addEventListener("visibilitychange", () => 
       console.log("Tab visibility:", document.visibilityState)

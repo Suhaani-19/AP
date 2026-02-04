@@ -6,15 +6,27 @@
   <title>Vivid Colorful Scenery</title>
 
   <style>
+    /* =====================
+       🎨 CSS Variables
+       ===================== */
     :root {
       --pink: #ffcffc;
       --peach: #ffe3d5;
       --blue: #b2f7ff;
+
       --glass: rgba(255, 255, 255, 0.55);
       --glow: rgba(255, 255, 255, 0.35);
+
+      --border-radius: 16px;
+      --transition-fast: 0.25s ease;
     }
 
-    * {
+    /* =====================
+       🌍 Global Reset
+       ===================== */
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
@@ -34,36 +46,116 @@
       border: 4px solid rgba(255, 255, 255, 0.42);
       box-shadow: inset 0 0 50px var(--glow);
 
-      /* ✨ Fade-in + subtle hue rotation for premium feel */
-      animation: fadeIn 1.4s ease-out, bgShift 10s ease-in-out infinite alternate;
+      animation: fadeIn 1.4s ease-out,
+                 bgShift 12s ease-in-out infinite alternate;
     }
 
-    ...
+    /* =====================
+       🧭 Header
+       ===================== */
+    header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+
+      padding: 10px 22px;
+      border-radius: var(--border-radius);
+
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+
+      font-weight: 600;
+      letter-spacing: 0.4px;
+
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+
+    /* =====================
+       🌈 Scene Container
+       ===================== */
+    .scene {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    /* =====================
+       💧 Ripple Effect
+       ===================== */
+    .ripple {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      pointer-events: none;
+
+      background: rgba(255, 255, 255, 0.45);
+      transform: translate(-50%, -50%);
+      animation: ripple 0.7s ease-out forwards;
+    }
+
+    /* =====================
+       🎞️ Animations
+       ===================== */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(1.02);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes bgShift {
+      0% {
+        filter: hue-rotate(0deg);
+      }
+      100% {
+        filter: hue-rotate(18deg);
+      }
+    }
+
+    @keyframes ripple {
+      from {
+        opacity: 0.6;
+        transform: translate(-50%, -50%) scale(0);
+      }
+      to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(8);
+      }
+    }
   </style>
 </head>
 
 <body>
   <!-- 🧭 Fixed glassmorphism header label -->
-  <header>Trial Codes :</header>
+  <header aria-label="Project label">Trial Codes :</header>
 
-  <main class="scene" aria-label="Colorful scenery scene">
-    ...
-  </main>
+  <!-- 🌈 Main Scene -->
+  <main class="scene" aria-label="Colorful scenery scene"></main>
 
   <script>
     (() => {
-      const version = "2.0.0";
-      console.log("Scenery loaded 🌈 | version:", version);
+      const VERSION = "2.1.0";
+      console.log(`Scenery loaded 🌈 | version: ${VERSION}`);
 
-      /* 💧 Click-based ripple effect for interactive feedback */
-      document.addEventListener("click", (e) => {
+      // 💧 Click ripple effect
+      document.addEventListener("click", (event) => {
         const ripple = document.createElement("div");
         ripple.className = "ripple";
-        ripple.style.left = e.clientX + "px";
-        ripple.style.top = e.clientY + "px";
+        ripple.style.left = `${event.clientX}px`;
+        ripple.style.top = `${event.clientY}px`;
+
         document.body.appendChild(ripple);
 
-        ripple.addEventListener("animationend", () => ripple.remove());
+        ripple.addEventListener("animationend", () => {
+          ripple.remove();
+        });
       });
     })();
   </script>
